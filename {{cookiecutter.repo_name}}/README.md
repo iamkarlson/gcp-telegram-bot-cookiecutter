@@ -4,7 +4,7 @@
 
 # Why
 
-Because Emacs sucks on mobile and I want to capture my thoughts on the go.
+Because I can.
 
 # Init
 
