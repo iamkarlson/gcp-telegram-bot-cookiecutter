@@ -1,6 +1,6 @@
-# Brain telegram bot
+# {{cookiecutter.project_name}}
 
-Dumps sent messages to github. Allows to search through them and get some random stuff like pages.
+{{cookiecutter.project_short_description}}
 
 # Why
 
@@ -13,7 +13,6 @@ You have to create a project upfront. `create_infra.sh` will do it for you.
 # Deploy with terraform
 
 1. Create a bot with [@BotFather](https://t.me/BotFather)
-2. Fork this repo
 3. Fix variables.tf (put them in damn secrets)
 4. Run `deploy_terraform.sh`
 5. Send your damn messages to your bot
@@ -22,7 +21,6 @@ You have to create a project upfront. `create_infra.sh` will do it for you.
 # Deploy without terraform
 
 1. Create a bot with [@BotFather](https://t.me/BotFather)
-2. Fork this repo
 3. Put your damn secrets in `prod.env.yaml`
 4. Run `deploy.sh`
 5. Register webhook with `setup_webhook.py`. 

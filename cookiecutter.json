@@ -3,5 +3,6 @@
     "bot_token": "1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi",
     "gcp_project_id": "my-telegram-bot",
     "project_name": "Beautiful Telegram Bot",
-    "gcp_region": "europe-west1"
+    "gcp_region": "europe-west1",
+    "project_short_description": "This is a beautiful Telegram bot"
 }
