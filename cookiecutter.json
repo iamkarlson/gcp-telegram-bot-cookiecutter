@@ -1,0 +1,7 @@
+{
+    "repo_name": "beautiful-telegram-bot",
+    "bot_token": "1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi",
+    "gcp_project_id": "my-telegram-bot",
+    "project_name": "Beautiful Telegram Bot",
+    "gcp_region": "europe-west1"
+}

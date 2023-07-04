@@ -1,0 +1,32 @@
+# Brain telegram bot
+
+Dumps sent messages to github. Allows to search through them and get some random stuff like pages.
+
+# Why
+
+Because Emacs sucks on mobile and I want to capture my thoughts on the go.
+
+# Init
+
+You have to create a project upfront. `create_infra.sh` will do it for you.
+
+# Deploy with terraform
+
+1. Create a bot with [@BotFather](https://t.me/BotFather)
+2. Fork this repo
+3. Fix variables.tf (put them in damn secrets)
+4. Run `deploy_terraform.sh`
+5. Send your damn messages to your bot
+
+
+# Deploy without terraform
+
+1. Create a bot with [@BotFather](https://t.me/BotFather)
+2. Fork this repo
+3. Put your damn secrets in `prod.env.yaml`
+4. Run `deploy.sh`
+5. Register webhook with `setup_webhook.py`. 
+  * this sucks because you have to do it manually comparing to terraform
+5. Send your damn messages to your bot
+
+
