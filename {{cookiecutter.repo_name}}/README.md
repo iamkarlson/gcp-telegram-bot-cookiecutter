@@ -8,14 +8,15 @@ Because I can.
 
 # Init
 
-You have to create a project upfront. `create_infra.sh` will do it for you. You still need to enable billing for this account. Open this link https://console.cloud.google.com/billing/linkedaccount?project={{cookiecutter.gcp_project_id}} and click "Link a billing account". You can use your existing billing account or create a new one.
+1. Create a bot with [@BotFather](https://t.me/BotFather)
+1. Fork this repo
+1. Create a GCP project. `create_infra.sh` will do it for you. You still need to enable billing for this account. Open this link https://console.cloud.google.com/billing/linkedaccount?project={{cookiecutter.gcp_project_id}} and click "Link a billing account". You can use your existing billing account or create a new one.
+
 
 # Deploy with terraform
-
-1. Fix variables.tf (put them in damn secrets)
-2. Run `deploy_terraform.sh`
-3. Send your damn messages to your bot
-
+3. Fix variables.tf (put them in damn secrets)
+4. Run `deploy_terraform.sh`
+5. Send your damn messages to your bot
 
 # Deploy without terraform
 
@@ -26,3 +27,7 @@ You have to create a project upfront. `create_infra.sh` will do it for you. You 
 4. Send your damn messages to your bot
 
 
+# Code structure
+
+- `main.py` - entrypoint
+- `config.py` - config for the bot, set ups all the configuration for different tasks. 
