@@ -8,9 +8,7 @@ Because I can.
 
 # Init
 
-1. Create a bot with [@BotFather](https://t.me/BotFather)
-1. Fork this repo
-1. Create a GCP project. `create_infra.sh` will do it for you. You still need to enable billing for this account. Open this link https://console.cloud.google.com/billing/linkedaccount?project={{cookiecutter.gcp_project_id}} and click "Link a billing account". You can use your existing billing account or create a new one.
+Create a GCP project. `create_infra.sh` will do it for you. You still need to enable billing for this account. Open this link https://console.cloud.google.com/billing/linkedaccount?project={{cookiecutter.gcp_project_id}} and click "Link a billing account". You can use your existing billing account or create a new one.
 
 
 # Deploy with terraform
