@@ -1,6 +1,11 @@
-# gcp-telegram-bot-cookiecutter
+# Telegram Bot Project Cookiecutter
 
-Cookiecutter template for creating a Telegram bot on GCP. 
+Cookiecutter template for creating a Telegram bot on GCP infrastructure.
+
+# Why
+
+If you make bots for different purposes, you probably want to have all the boilerplate code to be written already. 
+This cookiecutter will help you kickstart your bot project.
 
 ## Usage
 
