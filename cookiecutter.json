@@ -4,5 +4,6 @@
     "gcp_project_id": "my-telegram-bot",
     "project_name": "Beautiful Telegram Bot",
     "gcp_region": "europe-west1",
-    "project_short_description": "This is a beautiful Telegram bot"
+    "project_short_description": "This is a beautiful Telegram bot",
+    "authorized_chat_ids": "1234567890,0987654321"
 }
