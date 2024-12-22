@@ -1,0 +1,8 @@
+# Terraform variables for the GCP project
+TF_VAR_project: "{{cookiecutter.gcp_project_id}}"
+TF_VAR_region: "{{cookiecutter.gcp_region}}"
+TF_VAR_name: "{{cookiecutter.repo_name}}"
+TF_VAR_description: "{{cookiecutter.project_short_description}}"
+
+BOT_TOKEN: {{cookiecutter.bot_token}}
+AUTHORIZED_CHAT_IDS: "{{cookiecutter.authorized_chat_ids}}"

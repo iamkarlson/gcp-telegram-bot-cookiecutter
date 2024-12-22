@@ -1,8 +1,17 @@
 terraform {
+  required_version = ">= 1.10"
   required_providers {
     google = {
       source  = "hashicorp/google"
       version = ">= 4.34.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.6.3"
+    }
+    archive = {
+      source  = "hashicorp/archive"
+      version = ">= 2.7.0"
     }
   }
 }
@@ -25,30 +34,33 @@ resource "google_storage_bucket" "default" {
 data "archive_file" "default" {
   type        = "zip"
   output_path = "/tmp/function-source.zip"
-  source_dir  = "src/"
+  source_dir  = abspath("${path.module}/../src/") # Relative to project root
 }
-
 
 locals {
   source_code_hash = filemd5(data.archive_file.default.output_path)
-  config = yamldecode(file("${path.module}/prod.env.yaml"))
+  config = merge(
+    yamldecode(file(abspath("${path.module}/../config/${var.namespace}/config.yaml"))), # Relative to project root
+    { "NAMESPACE" = var.namespace }
+  )
 }
-
 
 resource "google_storage_bucket_object" "object" {
   name   = "function-source-${local.source_code_hash}.zip"
   bucket = google_storage_bucket.default.name
   source = data.archive_file.default.output_path # Add path to the zipped function source code
+
+
 }
 
-resource "google_cloudfunctions2_function" "bot" {
+resource "google_cloudfunctions2_function" "{{cookiecutter.repo_name}}" {
   name        = var.name
   description = var.description
 
   location = var.region
 
   build_config {
-    runtime     = "python311"
+    runtime     = "python312"
     entry_point = "handle" # Set the entry point
     source {
       storage_source {
@@ -89,5 +101,3 @@ resource "google_cloudfunctions2_function_iam_binding" "binding" {
   role           = "roles/cloudfunctions.invoker"
   members        = ["allUsers"]
 }
-
-

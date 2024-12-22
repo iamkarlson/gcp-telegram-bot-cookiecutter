@@ -1,5 +1,5 @@
 gcloud functions deploy {{cookiecutter.gcp_project_id}} \
---env-vars-file prod.env.yaml \
+--env-vars-file config/production/config.yaml \
 --gen2 \
 --runtime=python311 \
 --region={{cookiecutter.gcp_project_id}} \

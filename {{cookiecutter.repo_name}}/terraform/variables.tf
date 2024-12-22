@@ -19,3 +19,7 @@ variable "description" {
   default = "{{cookiecutter.repo_name}}"
 }
 
+variable "namespace" {
+  type    = string
+  default = "production"
+}
