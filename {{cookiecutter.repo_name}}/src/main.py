@@ -20,6 +20,8 @@ logging.setLoggerClass(GCPLogger)
 
 logger = logging.getLogger(__name__)
 
+# If you don't like setnry or don't have it, just remove this block
+# and remove sentry exception capture in a handle method
 SENTRY_DSN = os.environ.get("SENTRY_DSN", "")
 
 sentry_sdk.init(
@@ -102,13 +104,14 @@ def process_non_command(message: Message, file_path=None):
     # * change default_action signature to accept file_path
     # * do some switcheroo here
     #
-    # At this moment it's difficult to keep the context when and what is returned to a user
+    # At this moment, it's difficult to keep the context
+    # when and what is returned to a user
     # So the call chain is the following:
     # process_non_command -> process_message -> handle_message -> send_back
+    #
     # Whatever is returned from here is going to be displayed to the user
     #
     # Currently, there's no output format to use HTML or another fancy shit
-    #
     if default_action(message):
         logger.info("Run default action")
         return "Success!"
@@ -116,7 +119,7 @@ def process_non_command(message: Message, file_path=None):
         return "Failed!"
 
 
-# Here below remains only functional methods that generally shouldn't be changed
+# Here's below remains only "infra" methods that generally shouldn't be changed
 
 authorized_chats = [int(x) for x in os.environ["AUTHORIZED_CHAT_IDS"].split(",")]
 
@@ -133,22 +136,26 @@ def auth_check(message: Message):
 def handle(request: Request):
     """
     Incoming telegram webhook handler for a GCP Cloud Function.
-    When request is received, body is parsed into standard telegram message model, and then forwarded to command handler.
+    When request is received,
+    body is parsed into standard telegram message model,
+    and then forwarded to command handler.
     """
     if request.method == "GET":
         return {"statusCode": 200}
-    # when post is called, parse body into standard telegram message model, and then forward to command handler
+
     if request.method == "POST":
         try:
             incoming_data = request.get_json()
-            logger.debug(incoming_data)
+            logger.debug(f"incoming data: {incoming_data}")
             update_message = Update.de_json(incoming_data, bot)
             message = update_message.message or update_message.edited_message
             if auth_check(message):
                 handle_message(message)
             return {"statusCode": 200}
         except Exception as e:
-            logger.error(e)
+            sentry_sdk.capture_exception(e)
+            logger.error("Error occurred but message wasn't processed")
+            return {"statusCode": 200}
 
     # Unprocessable entity
     abort(422)
